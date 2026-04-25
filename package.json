@@ -1,9 +1,9 @@
 {
   "name": "mihomo-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
-  "description": "Mihomo 本地控制台（独立产品线）",
+  "description": "Mihomo UI 双轨产品：自研控制台 + 官方 MetaCubeXD 本地宿主",
   "scripts": {
     "start": "node server.mjs"
   }
