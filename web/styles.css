@@ -116,6 +116,16 @@ input {
   background: #fff;
 }
 
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--text);
+  background: #fff;
+}
+
 .inline {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -147,6 +157,7 @@ button.primary {
 button.primary:hover { background: var(--primary-2); }
 button.danger { background: #b04b4b; color: #fff; }
 button.ghost { background: #eee6db; color: #5f5a52; }
+button.danger-lite { background: #f8dede; color: #8b2b2b; }
 
 .tip {
   margin: 10px 0 0;
@@ -218,8 +229,66 @@ pre {
   color: #2f7d52;
 }
 
+.node-grid {
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+}
+
+.inline-check {
+  margin-top: 8px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.top-gap {
+  margin-top: 18px;
+}
+
+.table-wrap {
+  margin-top: 8px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+thead th {
+  text-align: left;
+  font-size: 13px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding: 10px;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 10px;
+  border-top: 1px solid #f1e8da;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.small-inline {
+  grid-template-columns: 1fr auto;
+  min-width: 380px;
+}
+
 @media (max-width: 940px) {
   .grid {
+    grid-template-columns: 1fr;
+  }
+  .node-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .small-inline {
+    min-width: 0;
     grid-template-columns: 1fr;
   }
   .hero {
