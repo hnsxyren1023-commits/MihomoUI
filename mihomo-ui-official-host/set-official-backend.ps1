@@ -16,4 +16,4 @@ $obj = @{
 }
 
 $obj | ConvertTo-Json | Set-Content -LiteralPath $configPath -Encoding UTF8
-Write-Host "已设置官方 UI 默认后端：" $BackendUrl
+Write-Host "已设置官方 UI 默认后端：$BackendUrl"
