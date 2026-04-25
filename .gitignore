@@ -1,0 +1,9 @@
+node_modules/
+.pnpm-store/
+*.log
+
+data/ui-config.json
+mihomo-ui-official-host/data/official-ui-config.json
+
+mihomo-ui-official/
+mihomo-ui-official-dist/
