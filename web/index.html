@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mihomo UI</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero card">
+        <div>
+          <p class="eyebrow">MIHOMO UI</p>
+          <h1>本地代理控制台</h1>
+          <p class="sub">启动 / 停止 mihomo、查看代理组、手动切换节点（独立产品线 MVP）。</p>
+        </div>
+        <div class="status-box">
+          <span id="healthBadge" class="badge pending">服务检查中</span>
+          <span id="processBadge" class="badge idle">mihomo 未运行</span>
+        </div>
+      </header>
+
+      <section class="grid">
+        <section class="card">
+          <h2>运行配置</h2>
+          <label class="field">
+            <span>mihomo.exe 路径</span>
+            <input id="exeInput" type="text">
+          </label>
+          <label class="field">
+            <span>config.yaml 路径</span>
+            <input id="configInput" type="text">
+          </label>
+          <div class="inline">
+            <label class="field">
+              <span>控制器端口</span>
+              <input id="portInput" type="number" min="1" max="65535">
+            </label>
+            <label class="field">
+              <span>控制器 Secret</span>
+              <input id="secretInput" type="text">
+            </label>
+          </div>
+          <div class="buttons">
+            <button id="saveConfigBtn">保存配置</button>
+            <button id="genConfigBtn" class="ghost">生成最小配置</button>
+          </div>
+          <p id="configTip" class="tip">-</p>
+        </section>
+
+        <section class="card">
+          <h2>运行控制</h2>
+          <div class="buttons">
+            <button id="startBtn" class="primary">启动 mihomo</button>
+            <button id="stopBtn" class="danger">停止 mihomo</button>
+            <button id="refreshBtn" class="ghost">刷新状态</button>
+            <button id="diagBtn" class="ghost">连接自检</button>
+          </div>
+          <p id="versionText" class="tip">版本：未读取</p>
+          <div id="diagBox" class="diag">尚未执行自检。</div>
+          <h3>日志尾部（stdout）</h3>
+          <pre id="stdoutBox">-</pre>
+          <h3>日志尾部（stderr）</h3>
+          <pre id="stderrBox">-</pre>
+        </section>
+      </section>
+
+      <section class="card">
+        <div class="title-row">
+          <h2>代理组</h2>
+          <button id="loadGroupsBtn" class="ghost">加载代理组</button>
+        </div>
+        <p class="tip">点击组内节点可直接切换。默认只展示包含可选节点的组。</p>
+        <div id="groupsWrap" class="groups">尚未加载</div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
