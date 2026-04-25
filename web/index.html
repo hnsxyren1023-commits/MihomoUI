@@ -12,7 +12,7 @@
         <div>
           <p class="eyebrow">MIHOMO UI</p>
           <h1>本地代理控制台</h1>
-          <p class="sub">用于启停 mihomo、查看代理组、切换节点、执行连接诊断。</p>
+          <p class="sub">启停 mihomo、查看代理组、节点增删改、一键写回配置与回滚备份。</p>
         </div>
         <div class="status-box">
           <span id="healthBadge" class="badge pending">服务检查中</span>
@@ -63,6 +63,110 @@
           <h3>日志尾部（stderr）</h3>
           <pre id="stderrBox">-</pre>
         </section>
+      </section>
+
+      <section class="card">
+        <h2>节点库管理</h2>
+        <div class="grid node-grid">
+          <label class="field">
+            <span>节点名称</span>
+            <input id="nodeName" type="text" placeholder="例如 HK-hy2-01">
+          </label>
+          <label class="field">
+            <span>协议类型</span>
+            <select id="nodeType">
+              <option value="socks5">socks5</option>
+              <option value="http">http</option>
+              <option value="hy2">hy2</option>
+              <option value="vless">vless</option>
+              <option value="vmess">vmess</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>服务器</span>
+            <input id="nodeServer" type="text" placeholder="example.com">
+          </label>
+          <label class="field">
+            <span>端口</span>
+            <input id="nodePort" type="number" min="1" max="65535" placeholder="443">
+          </label>
+          <label class="field">
+            <span>用户名（可选）</span>
+            <input id="nodeUsername" type="text">
+          </label>
+          <label class="field">
+            <span>密码（hy2/socks5/http 常用）</span>
+            <input id="nodePassword" type="text">
+          </label>
+          <label class="field">
+            <span>UUID（vless/vmess）</span>
+            <input id="nodeUuid" type="text">
+          </label>
+          <label class="field">
+            <span>SNI（可选）</span>
+            <input id="nodeSni" type="text">
+          </label>
+          <label class="field">
+            <span>网络（如 ws）</span>
+            <input id="nodeNetwork" type="text">
+          </label>
+          <label class="field">
+            <span>ws path（可选）</span>
+            <input id="nodeWsPath" type="text">
+          </label>
+          <label class="field">
+            <span>ws host（可选）</span>
+            <input id="nodeWsHost" type="text">
+          </label>
+          <label class="field">
+            <span>hy2 mport（可选）</span>
+            <input id="nodeMport" type="text" placeholder="20000-50000">
+          </label>
+        </div>
+        <label class="inline-check">
+          <input id="nodeInsecure" type="checkbox"> 跳过证书验证（insecure）
+        </label>
+        <div class="buttons">
+          <button id="nodeCreateBtn" class="primary">新增节点</button>
+          <button id="nodeUpdateBtn">保存修改</button>
+          <button id="nodeResetBtn" class="ghost">清空表单</button>
+        </div>
+        <p id="nodeTip" class="tip">-</p>
+
+        <div class="title-row top-gap">
+          <h3>节点列表</h3>
+          <div class="buttons">
+            <button id="loadNodesBtn" class="ghost">刷新节点</button>
+            <button id="applyNodesBtn">写回 config.yaml</button>
+            <button id="loadBackupsBtn" class="ghost">刷新备份</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="nodeTable">
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>类型</th>
+                <th>服务器</th>
+                <th>端口</th>
+                <th>更新时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="nodeTableBody">
+              <tr><td colspan="6">暂无节点</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="title-row top-gap">
+          <h3>配置备份与回滚</h3>
+          <div class="inline small-inline">
+            <select id="backupSelect"></select>
+            <button id="rollbackBtn" class="danger">回滚到选中备份</button>
+          </div>
+        </div>
+        <p id="backupTip" class="tip">-</p>
       </section>
 
       <section class="card">
