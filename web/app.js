@@ -104,11 +104,12 @@ async function runDiagnosis() {
   lines.push(`诊断目标：${report.controllerBase || "-"}`);
   const checks = report.checks || [];
   for (const item of checks) {
-    const mark = item.ok ? "✅" : "❌";
+    const mark = item.ok ? "✓" : "✗";
     lines.push(`${mark} ${item.key}: ${item.detail}`);
-    if (item.tip) lines.push(`   建议：${item.tip}`);
+    if (item.tip) lines.push(`  建议：${item.tip}`);
   }
-  lines.push(`结论：${report.summary === "ok" ? "可用" : report.summary === "warning" ? "部分异常" : "不可用"}`);
+  const summary = report.summary === "ok" ? "可用" : report.summary === "warning" ? "部分异常" : "不可用";
+  lines.push(`结论：${summary}`);
   els.diagBox.textContent = lines.join("\n");
 }
 
@@ -124,15 +125,18 @@ async function stopMihomo() {
 
 function renderGroups(groups) {
   if (!groups.length) {
-    els.groupsWrap.textContent = "未找到可切换的代理组（请检查配置中是否存在 proxy-groups）。";
+    els.groupsWrap.textContent = "未找到可切换的代理组。请检查 config.yaml 的 proxy-groups。";
     return;
   }
-  els.groupsWrap.innerHTML = groups.map((group) => {
-    const nodeButtons = group.all.map((node) => {
-      const active = group.now === node ? "active" : "";
-      return `<button class="node-btn ${active}" data-group="${encodeURIComponent(group.name)}" data-node="${encodeURIComponent(node)}">${node}</button>`;
-    }).join("");
-    return `
+  els.groupsWrap.innerHTML = groups
+    .map((group) => {
+      const nodeButtons = group.all
+        .map((node) => {
+          const active = group.now === node ? "active" : "";
+          return `<button class="node-btn ${active}" data-group="${encodeURIComponent(group.name)}" data-node="${encodeURIComponent(node)}">${node}</button>`;
+        })
+        .join("");
+      return `
       <article class="group-card">
         <div class="group-head">
           <strong>${group.name}</strong>
@@ -141,7 +145,8 @@ function renderGroups(groups) {
         <div class="nodes">${nodeButtons}</div>
       </article>
     `;
-  }).join("");
+    })
+    .join("");
 }
 
 async function loadGroups() {
@@ -189,6 +194,7 @@ els.diagBtn.addEventListener("click", async () => {
     els.diagBox.textContent = `诊断失败：${error.message}`;
   }
 });
+
 els.loadGroupsBtn.addEventListener("click", async () => {
   try {
     await loadGroups();
@@ -221,5 +227,9 @@ async function init() {
 }
 
 init().catch((error) => {
-  els.configTip.textContent = `初始化失败：${error.message}`;
+  els.diagBox.textContent = `初始化失败：${error.message}`;
 });
+
+setInterval(() => {
+  refreshStatus().catch(() => {});
+}, 5000);
