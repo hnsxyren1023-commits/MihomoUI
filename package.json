@@ -1,0 +1,10 @@
+{
+  "name": "mihomo-ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mihomo 本地控制台（独立产品线）",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
