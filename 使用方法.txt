@@ -1,0 +1,28 @@
+MihomoUI 使用方法（Windows）
+
+一、启动方式
+1) 自研 UI：
+   powershell -ExecutionPolicy Bypass -File "D:\Xcode\20260423_Qproxyhub\mihomo-ui-repo-temp\start-mihomo-ui.ps1"
+2) 官方 UI 宿主：
+   powershell -ExecutionPolicy Bypass -File "D:\Xcode\20260423_Qproxyhub\mihomo-ui-repo-temp\mihomo-ui-official-host\start-official-ui.ps1"
+3) 双 UI 一键对比：
+   双击 启动-双UI对比.bat
+
+二、访问地址
+- 自研 UI： http://127.0.0.1:8877/
+- 官方 UI： http://127.0.0.1:8878/
+
+三、常见排查
+1) 报错找不到 .ps1
+原因：当前目录不在项目目录。
+解决：使用绝对路径执行脚本。
+
+2) 页面可打开但无数据
+原因：mihomo 未启动、controller 端口不对、secret 不一致。
+解决：在自研 UI 里运行“连接自检”，按提示修复。
+
+3) 启动失败
+请确认：
+- C:\Program Files\nodejs\node.exe 存在
+- mihomo 程序路径正确
+- config.yaml 路径正确
