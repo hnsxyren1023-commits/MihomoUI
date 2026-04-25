@@ -33,11 +33,24 @@ powershell -ExecutionPolicy Bypass -File .\mihomo-ui-official-host\start-officia
 启动-双UI对比.bat
 ```
 
+或使用 PowerShell：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\start-dual-ui.ps1
+```
+
 ## 运行要求
 
 - Windows 10 / 11
 - Node.js 24+
 - 可用的 mihomo 内核
+- 官方 UI 本地静态资源目录（`mihomo-ui-official-dist`）
+
+如果官方 UI（8878）显示 `connection refused`，先执行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\download-official-metacubexd.ps1
+```
 
 ## 目录结构
 
@@ -62,4 +75,3 @@ MihomoUI/
 ## 关联仓库
 
 - 测试/导出产品线：[`Qproxyhub`](https://github.com/hnsxyren1023-commits/Qproxyhub)
-
